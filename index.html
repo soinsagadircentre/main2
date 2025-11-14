@@ -11,11 +11,122 @@
     <link rel="stylesheet" href="slick/slick.min.css">
     <link rel="stylesheet" href="slick/slick-theme.css">
     <link rel="stylesheet" href="css/templatemo-upright.css">
+    <style>
+        :root {
+            --primary: #00a8a8;
+            --text: #333;
+            --bg: #fff;
+            --card-bg: #f8f9fa;
+            --hr: #ddd;
+        }
+        [data-theme="dark"] {
+            --primary: #00d4d4;
+            --text: #e0f7fa;
+            --bg: #121f3d;
+            --card-bg: #1a2a44;
+            --hr: #2c3e50;
+        }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
+        }
+        .tm-text-primary { color: var(--primary) !important; }
+        .tm-text-container, .media-body, .tm-about-text, .tm-contact-form, address, .tm-contact-links a {
+            color: var(--text);
+        }
+        .tm-gallery-item figcaption, .tm-post-link { color: #fff; }
+        .tm-section, .tm-section-wrap { background: var(--bg); }
+        hr { border-color: var(--hr); }
+        .tm-carousel-item, .tm-text-container, .media { background: var(--card-bg); }
+        .tm-brand-box, #tm-sidebar { background: rgba(0,0,0,0.05); }
+        [data-theme="dark"] .tm-brand-box, [data-theme="dark"] #tm-sidebar { background: rgba(0,0,0,0.3); }
+        .tm-floating-icons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            gap: 12px;
+        }
+        .tm-icon-btn {
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.9);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        [data-theme="dark"] .tm-icon-btn {
+            background: rgba(18,31,61,0.9);
+            color: #00d4d4;
+            border-color: #00d4d4;
+        }
+        .tm-icon-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,168,168,0.3);
+        }
+        .tm-lang-menu {
+            position: absolute;
+            top: 55px;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--hr);
+            border-radius: 8px;
+            padding: 8px;
+            display: none;
+            flex-direction: column;
+            min-width: 120px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .tm-lang-menu.show { display: flex; }
+        .tm-lang-option {
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tm-lang-option:hover { background: var(--primary); color: white; }
+        [data-theme="dark"] .tm-lang-menu { background: #1a2a44; border-color: #2c3e50; }
+        [dir="rtl"] .tm-floating-icons { left: 20px; right: auto; }
+        [dir="rtl"] .text-right { text-align: left !important; }
+        [dir="rtl"] .tm-nav .nav-link { padding-right: 20px; padding-left: 0; }
+    </style>
 </head>
-<body>    
+<body data-theme="light" dir="ltr">
+    <div class="tm-floating-icons">
+        <div style="position: relative;">
+            <div class="tm-icon-btn" id="langToggle">
+                <i class="fas fa-globe"></i>
+            </div>
+            <div class="tm-lang-menu" id="langMenu">
+                <div class="tm-lang-option" data-lang="fr">
+                    🇫🇷 Français
+                </div>
+                <div class="tm-lang-option" data-lang="en">
+                    🇬🇧 English
+                </div>
+                <div class="tm-lang-option" data-lang="ar">
+                    🇲🇦 العربية
+                </div>
+            </div>
+        </div>
+        <div class="tm-icon-btn" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
-            <!-- Leftside bar -->
             <div id="tm-sidebar" class="tm-sidebar"> 
                 <nav class="tm-nav">
                     <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
@@ -23,35 +134,35 @@
                     </button>
                     <div>
                         <div class="tm-brand-box">
-                            <h1 class="tm-brand">Soins Agadir Center</h1>
+                            <h1 class="tm-brand" data-key="brand">Soins Agadir Center</h1>
                         </div>                
                         <ul id="tm-main-nav">
                             <li class="nav-item">                                
                                 <a href="#home" class="nav-link current">
                                     <div class="triangle-right"></div>
                                     <i class="fas fa-home nav-icon"></i>
-                                    Home
+                                    <span data-key="nav_home">Home</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#gallery" class="nav-link">
                                     <div class="triangle-right"></div>
                                     <i class="fas fa-images nav-icon"></i>
-                                    Gallery
+                                    <span data-key="nav_gallery">Gallery</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#about" class="nav-link">
                                     <div class="triangle-right"></div>
                                     <i class="fas fa-user-friends nav-icon"></i>
-                                    About
+                                    <span data-key="nav_about">About</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#contact" class="nav-link">
                                     <div class="triangle-right"></div>
                                     <i class="fas fa-envelope nav-icon"></i>
-                                    Contact
+                                    <span data-key="nav_contact">Contact</span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -64,17 +175,15 @@
                         </ul>
                     </div>
                     <footer class="mb-3 tm-mt-100">
-                        © 2025 Soins Agadir Center
+                        © 2025 <span data-key="brand">Soins Agadir Center</span>
                     </footer>
                 </nav>
             </div>
-            
             <div class="tm-main">
-                <!-- Home section -->
                 <div class="tm-section-wrap">
                     <div class="tm-parallax" data-parallax="scroll" data-image-src="img/img-01.jpg"></div>                   
                     <section id="home" class="tm-section">
-                        <h2 class="tm-text-primary">Welcome to Soins Agadir Center</h2>
+                        <h2 class="tm-text-primary" data-key="welcome">Welcome to Soins Agadir Center</h2>
                         <hr class="mb-5">
                         <div class="row">
                             <div class="col-lg-6 tm-col-home mb-4">
@@ -82,11 +191,11 @@
                                     <div class="tm-icon-container mb-5 mr-0 ml-auto">
                                         <i class="fas fa-clinic-medical fa-4x tm-text-primary"></i>
                                     </div>                                
-                                    <p>
+                                    <p data-key="home_p1">
                                         Your trusted nursing and medical care center in Agadir. We provide professional home care, 
                                         injections, wound care, and aesthetic treatments with certified medical staff.
                                     </p>
-                                    <p>
+                                    <p data-key="home_p2">
                                         Located at 94, Rue El Farabi, Bloc E8, Cité Dakhla, Agadir, we are here to support your health 
                                         and well-being with personalized, high-quality care.
                                     </p>
@@ -97,12 +206,12 @@
                                     <div class="tm-icon-container mb-5 mr-0 ml-auto">
                                         <i class="fas fa-heartbeat fa-4x tm-text-primary"></i>
                                     </div>                                 
-                                    <p>
+                                    <p data-key="home_p3">
                                         Our team of qualified nurses and doctors ensures safe, effective, and compassionate care 
                                         tailored to your needs — whether at home or in our modern clinic.
                                     </p>
                                     <div class="text-right">
-                                        <a href="#gallery" class="btn btn-primary tm-btn-next">View Our Services</a>
+                                        <a href="#gallery" class="btn btn-primary tm-btn-next" data-key="btn_services">View Our Services</a>
                                     </div>                                    
                                 </div>
                             </div>
@@ -113,8 +222,8 @@
                                 <div class="media mb-4">
                                     <i class="fas fa-syringe fa-4x tm-post-icon tm-text-primary"></i>
                                     <div class="media-body">
-                                        <a href="#" class="d-block mb-2 tm-text-primary tm-post-link">Home Injections</a>  
-                                        <p>
+                                        <a href="#" class="d-block mb-2 tm-text-primary tm-post-link" data-key="service_injection">Home Injections</a>  
+                                        <p data-key="service_injection_desc">
                                             Professional administration of injections, IV therapy, and medication at your home. 
                                             Safe, sterile, and on-demand service available 24/7.
                                         </p>
@@ -123,8 +232,8 @@
                                 <div class="media mb-4">
                                     <i class="fas fa-band-aid fa-4x tm-post-icon tm-text-primary"></i>
                                     <div class="media-body">
-                                        <a href="#" class="d-block mb-2 tm-text-primary tm-post-link">Wound Care & Dressing</a>  
-                                        <p>
+                                        <a href="#" class="d-block mb-2 tm-text-primary tm-post-link" data-key="service_wound">Wound Care & Dressing</a>  
+                                        <p data-key="service_wound_desc">
                                             Expert treatment for post-surgical wounds, diabetic ulcers, burns, and chronic injuries. 
                                             We use advanced materials for faster healing.
                                         </p>
@@ -133,8 +242,8 @@
                                 <div class="media mb-4">
                                     <i class="fas fa-spa fa-4x tm-post-icon tm-text-primary"></i>
                                     <div class="media-body">
-                                        <a href="#" class="d-block mb-2 tm-text-primary tm-post-link">Hydrafacial & PRP</a>  
-                                        <p>
+                                        <a href="#" class="d-block mb-2 tm-text-primary tm-post-link" data-key="service_aesthetic">Hydrafacial & PRP</a>  
+                                        <p data-key="service_aesthetic_desc">
                                             Rejuvenate your skin with non-invasive Hydrafacial and PRP hair/skin treatments. 
                                             Natural glow and hair regrowth with proven results.
                                         </p>
@@ -147,311 +256,308 @@
                         </div>
                     </section>
                 </div>
-                <!-- Gallery section -->
                 <div class="tm-section-wrap">
                     <div class="tm-parallax" data-parallax="scroll" data-image-src="img/img-02.jpg"></div>                   
                     <section id="gallery" class="tm-section">
-                        <h2 class="tm-text-primary">Our Services & Treatments</h2>
+                        <h2 class="tm-text-primary" data-key="gallery_title">Our Services & Treatments</h2>
                         <hr class="mb-5">
                         <ul class="tm-gallery-links">
                             <li>
                                 <a href="javascript:void(0);" class="active tm-gallery-link" data-filter="*">
                                     <i class="fas fa-layer-group tm-gallery-link-icon"></i>
-                                    All
+                                    <span data-key="filter_all">All</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" class="tm-gallery-link" data-filter="home-care">
                                     <i class="fas fa-home tm-gallery-link-icon"></i>
-                                    Home Care
+                                    <span data-key="filter_home">Home Care</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" class="tm-gallery-link" data-filter="aesthetic">
                                     <i class="fas fa-spa tm-gallery-link-icon"></i>
-                                    Aesthetic
+                                    <span data-key="filter_aesthetic">Aesthetic</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" class="tm-gallery-link" data-filter="clinical">
                                     <i class="fas fa-clinic-medical tm-gallery-link-icon"></i>
-                                    Clinical
+                                    <span data-key="filter_clinical">Clinical</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);" class="tm-gallery-link" data-filter="team">
                                     <i class="fas fa-user-nurse tm-gallery-link-icon"></i>
-                                    Our Team
+                                    <span data-key="filter_team">Our Team</span>
                                 </a>
                             </li>
                         </ul>
                         <div class="tm-gallery">
                             <figure class="effect-honey tm-gallery-item home-care">
-                                <img src="img/gallery/tn/injection-01.jpg" alt="Injection à domicile"/>
+                                <img src="img/gallery/tn/injection-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Injection à Domicile</i></h2>
+                                    <h2><i data-key="gal_injection">Injection à Domicile</i></h2>
                                     <a href="img/gallery/injection-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item aesthetic">
-                                <img src="img/gallery/tn/hydrafacial-01.jpg" alt="Hydrafacial"/>
+                                <img src="img/gallery/tn/hydrafacial-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Hydrafacial</i></h2>
+                                    <h2><i data-key="gal_hydra">Hydrafacial</i></h2>
                                     <a href="img/gallery/hydrafacial-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>  
                             <figure class="effect-honey tm-gallery-item clinical">
-                                <img src="img/gallery/tn/wound-care-01.jpg" alt="Soins des plaies"/>
+                                <img src="img/gallery/tn/wound-care-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Pansement & Soins</i></h2>
+                                    <h2><i data-key="gal_wound">Pansement & Soins</i></h2>
                                     <a href="img/gallery/wound-care-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item team">
-                                <img src="img/gallery/tn/nurse-01.jpg" alt="Infirmière qualifiée"/>
+                                <img src="img/gallery/tn/nurse-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Notre Équipe</i></h2>
+                                    <h2><i data-key="gal_nurse">Notre Équipe</i></h2>
                                     <a href="img/gallery/nurse-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure> 
                             <figure class="effect-honey tm-gallery-item aesthetic">
-                                <img src="img/gallery/tn/prp-01.jpg" alt="PRP Cheveux"/>
+                                <img src="img/gallery/tn/prp-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>PRP Capillaire</i></h2>
+                                    <h2><i data-key="gal_prp">PRP Capillaire</i></h2>
                                     <a href="img/gallery/prp-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item home-care">
-                                <img src="img/gallery/tn/home-visit-01.jpg" alt="Visite à domicile"/>
+                                <img src="img/gallery/tn/home-visit-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Visite à Domicile</i></h2>
+                                    <h2><i data-key="gal_visit">Visite à Domicile</i></h2>
                                     <a href="img/gallery/home-visit-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure> 
                             <figure class="effect-honey tm-gallery-item clinical">
-                                <img src="img/gallery/tn/clinic-room-01.jpg" alt="Salle de soins"/>
+                                <img src="img/gallery/tn/clinic-room-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Clinique Moderne</i></h2>
+                                    <h2><i data-key="gal_room">Clinique Moderne</i></h2>
                                     <a href="img/gallery/clinic-room-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item team">
-                                <img src="img/gallery/tn/doctor-01.jpg" alt="Médecin superviseur"/>
+                                <img src="img/gallery/tn/doctor-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Médecin Superviseur</i></h2>
+                                    <h2><i data-key="gal_doctor">Médecin Superviseur</i></h2>
                                     <a href="img/gallery/doctor-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure> 
                             <figure class="effect-honey tm-gallery-item aesthetic">
-                                <img src="img/gallery/tn/microneedling-01.jpg" alt="Microneedling"/>
+                                <img src="img/gallery/tn/microneedling-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Microneedling</i></h2>
+                                    <h2><i data-key="gal_microneedling">Microneedling</i></h2>
                                     <a href="img/gallery/microneedling-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item home-care">
-                                <img src="img/gallery/tn/iv-therapy-01.jpg" alt="Perfusion à domicile"/>
+                                <img src="img/gallery/tn/iv-therapy-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Perfusion IV</i></h2>
+                                    <h2><i data-key="gal_iv">Perfusion IV</i></h2>
                                     <a href="img/gallery/iv-therapy-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item clinical">
-                                <img src="img/gallery/tn/equipment-01.jpg" alt="Matériel médical"/>
+                                <img src="img/gallery/tn/equipment-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Matériel Stérile</i></h2>
+                                    <h2><i data-key="gal_equipment">Matériel Stérile</i></h2>
                                     <a href="img/gallery/equipment-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>  
                             <figure class="effect-honey tm-gallery-item aesthetic">
-                                <img src="img/gallery/tn/skin-glow-01.jpg" alt="Peau éclatante"/>
+                                <img src="img/gallery/tn/skin-glow-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Résultat Hydrafacial</i></h2>
+                                    <h2><i data-key="gal_glow">Résultat Hydrafacial</i></h2>
                                     <a href="img/gallery/skin-glow-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item team">
-                                <img src="img/gallery/tn/nurse-team-01.jpg" alt="Équipe d'infirmiers"/>
+                                <img src="img/gallery/tn/nurse-team-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Équipe Certifiée</i></h2>
+                                    <h2><i data-key="gal_team">Équipe Certifiée</i></h2>
                                     <a href="img/gallery/nurse-team-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure> 
                             <figure class="effect-honey tm-gallery-item home-care">
-                                <img src="img/gallery/tn/patient-care-01.jpg" alt="Soins personnalisés"/>
+                                <img src="img/gallery/tn/patient-care-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Soins Personnalisés</i></h2>
+                                    <h2><i data-key="gal_patient">Soins Personnalisés</i></h2>
                                     <a href="img/gallery/patient-care-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item clinical">
-                                <img src="img/gallery/tn/entrance-01.jpg" alt="Entrée du centre"/>
+                                <img src="img/gallery/tn/entrance-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Soins Agadir Center</i></h2>
+                                    <h2><i data-key="gal_entrance">Soins Agadir Center</i></h2>
                                     <a href="img/gallery/entrance-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure> 
                             <figure class="effect-honey tm-gallery-item aesthetic">
-                                <img src="img/gallery/tn/prp-face-01.jpg" alt="PRP Visage"/>
+                                <img src="img/gallery/tn/prp-face-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>PRP Rajeunissement</i></h2>
+                                    <h2><i data-key="gal_prp_face">PRP Rajeunissement</i></h2>
                                     <a href="img/gallery/prp-face-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item home-care">
-                                <img src="img/gallery/tn/blood-test-01.jpg" alt="Prise de sang à domicile"/>
+                                <img src="img/gallery/tn/blood-test-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Prélèvement Sanguin</i></h2>
+                                    <h2><i data-key="gal_blood">Prélèvement Sanguin</i></h2>
                                     <a href="img/gallery/blood-test-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure> 
                             <figure class="effect-honey tm-gallery-item clinical">
-                                <img src="img/gallery/tn/sterile-room-01.jpg" alt="Salle stérile"/>
+                                <img src="img/gallery/tn/sterile-room-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Hygiène Maximale</i></h2>
+                                    <h2><i data-key="gal_sterile">Hygiène Maximale</i></h2>
                                     <a href="img/gallery/sterile-room-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item team">
-                                <img src="img/gallery/tn/nurse-smile-01.jpg" alt="Infirmière souriante"/>
+                                <img src="img/gallery/tn/nurse-smile-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Service Humain</i></h2>
+                                    <h2><i data-key="gal_smile">Service Humain</i></h2>
                                     <a href="img/gallery/nurse-smile-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item aesthetic">
-                                <img src="img/gallery/tn/hair-growth-01.jpg" alt="Croissance capillaire"/>
+                                <img src="img/gallery/tn/hair-growth-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Résultat PRP Cheveux</i></h2>
+                                    <h2><i data-key="gal_hair">Résultat PRP Cheveux</i></h2>
                                     <a href="img/gallery/hair-growth-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>  
                             <figure class="effect-honey tm-gallery-item home-care">
-                                <img src="img/gallery/tn/elderly-care-01.jpg" alt="Soins aux personnes âgées"/>
+                                <img src="img/gallery/tn/elderly-care-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Soins Personnes Âgées</i></h2>
+                                    <h2><i data-key="gal_elderly">Soins Personnes Âgées</i></h2>
                                     <a href="img/gallery/elderly-care-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item clinical">
-                                <img src="img/gallery/tn/medical-supplies-01.jpg" alt="Fournitures médicales"/>
+                                <img src="img/gallery/tn/medical-supplies-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Matériel de Qualité</i></h2>
+                                    <h2><i data-key="gal_supplies">Matériel de Qualité</i></h2>
                                     <a href="img/gallery/medical-supplies-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item aesthetic">
-                                <img src="img/gallery/tn/skin-treatment-01.jpg" alt="Traitement peau"/>
+                                <img src="img/gallery/tn/skin-treatment-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Traitement Acné</i></h2>
+                                    <h2><i data-key="gal_acne">Traitement Acné</i></h2>
                                     <a href="img/gallery/skin-treatment-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item team">
-                                <img src="img/gallery/tn/team-meeting-01.jpg" alt="Réunion d'équipe"/>
+                                <img src="img/gallery/tn/team-meeting-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Coordination Médicale</i></h2>
+                                    <h2><i data-key="gal_meeting">Coordination Médicale</i></h2>
                                     <a href="img/gallery/team-meeting-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure> 
                             <figure class="effect-honey tm-gallery-item home-care">
-                                <img src="img/gallery/tn/diabetic-care-01.jpg" alt="Soins diabète"/>
+                                <img src="img/gallery/tn/diabetic-care-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Soins Diabète</i></h2>
+                                    <h2><i data-key="gal_diabetic">Soins Diabète</i></h2>
                                     <a href="img/gallery/diabetic-care-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item clinical">
-                                <img src="img/gallery/tn/reception-01.jpg" alt="Accueil"/>
+                                <img src="img/gallery/tn/reception-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Accueil Chaleureux</i></h2>
+                                    <h2><i data-key="gal_reception">Accueil Chaleureux</i></h2>
                                     <a href="img/gallery/reception-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item aesthetic">
-                                <img src="img/gallery/tn/microneedling-result-01.jpg" alt="Résultat microneedling"/>
+                                <img src="img/gallery/tn/microneedling-result-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Résultat Microneedling</i></h2>
+                                    <h2><i data-key="gal_microneedling_result">Résultat Microneedling</i></h2>
                                     <a href="img/gallery/microneedling-result-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure> 
                             <figure class="effect-honey tm-gallery-item team">
-                                <img src="img/gallery/tn/nurse-training-01.jpg" alt="Formation continue"/>
+                                <img src="img/gallery/tn/nurse-training-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Formation Continue</i></h2>
+                                    <h2><i data-key="gal_training">Formation Continue</i></h2>
                                     <a href="img/gallery/nurse-training-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item home-care">
-                                <img src="img/gallery/tn/post-op-care-01.jpg" alt="Soins post-opératoires"/>
+                                <img src="img/gallery/tn/post-op-care-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Soins Post-Op</i></h2>
+                                    <h2><i data-key="gal_postop">Soins Post-Op</i></h2>
                                     <a href="img/gallery/post-op-care-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item clinical">
-                                <img src="img/gallery/tn/location-01.jpg" alt="Localisation"/>
+                                <img src="img/gallery/tn/location-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Facilement Accessible</i></h2>
+                                    <h2><i data-key="gal_location">Facilement Accessible</i></h2>
                                     <a href="img/gallery/location-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>  
                             <figure class="effect-honey tm-gallery-item aesthetic">
-                                <img src="img/gallery/tn/skin-hydration-01.jpg" alt="Hydratation profonde"/>
+                                <img src="img/gallery/tn/skin-hydration-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Hydratation Profonde</i></h2>
+                                    <h2><i data-key="gal_hydration">Hydratation Profonde</i></h2>
                                     <a href="img/gallery/skin-hydration-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item team">
-                                <img src="img/gallery/tn/nurse-patient-01.jpg" alt="Relation de confiance"/>
+                                <img src="img/gallery/tn/nurse-patient-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Confiance & Écoute</i></h2>
+                                    <h2><i data-key="gal_trust">Confiance & Écoute</i></h2>
                                     <a href="img/gallery/nurse-patient-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure> 
                             <figure class="effect-honey tm-gallery-item home-care">
-                                <img src="img/gallery/tn/vaccination-01.jpg" alt="Vaccination à domicile"/>
+                                <img src="img/gallery/tn/vaccination-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Vaccination</i></h2>
+                                    <h2><i data-key="gal_vaccine">Vaccination</i></h2>
                                     <a href="img/gallery/vaccination-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure>
                             <figure class="effect-honey tm-gallery-item clinical">
-                                <img src="img/gallery/tn/consultation-01.jpg" alt="Consultation médicale"/>
+                                <img src="img/gallery/tn/consultation-01.jpg" alt="Image"/>
                                 <figcaption>
-                                    <h2><i>Consultation</i></h2>
+                                    <h2><i data-key="gal_consult">Consultation</i></h2>
                                     <a href="img/gallery/consultation-01.jpg">View more</a>						
                                 </figcaption>			
                             </figure> 
                         </div>
                     </section>
                 </div>
-                <!-- About section -->
                 <div class="tm-section-wrap">
                     <div class="tm-parallax" data-parallax="scroll" data-image-src="img/img-03.jpg"></div>
                     <section id="about" class="tm-section">
-                        <h2 class="tm-text-primary">About Soins Agadir Center</h2>
+                        <h2 class="tm-text-primary" data-key="about_title">About Soins Agadir Center</h2>
                         <hr class="mb-5">
-                        
                         <div class="row tm-row-about">
                             <div class="tm-col-about tm-col-about-l">
-                                <p class="mb-4">
+                                <p class="mb-4" data-key="about_p1">
                                     Established in the heart of Agadir, Soins Agadir Center is a leading nursing and aesthetic care facility 
                                     dedicated to providing exceptional medical services both in-clinic and at home.
                                 </p>
-                                <p class="mb-4">
+                                <p class="mb-4" data-key="about_p2">
                                     Our team consists of licensed nurses, certified aesthetic specialists, and supervising physicians 
                                     who follow strict medical protocols to ensure patient safety and satisfaction.
                                 </p>
-                                <p class="mb-4">
+                                <p class="mb-4" data-key="about_p3">
                                     We specialize in home nursing, post-operative care, chronic disease management, and advanced 
                                     aesthetic treatments using state-of-the-art technology and medical-grade products.
                                 </p>
                             </div>
                             <div class="tm-col-about tm-col-about-r">
-                                <img src="img/img-about-01.jpg" alt="Clinique Soins Agadir" class="img-fluid mb-5 tm-img-about">
-                                <p>
+                                <img src="img/img-about-01.jpg" alt="Image" class="img-fluid mb-5 tm-img-about">
+                                <p data-key="about_p4">
                                     From routine injections to complex wound care and rejuvenating skin treatments, we bring 
                                     professional healthcare directly to you — with compassion, precision, and respect.
                                 </p>
@@ -461,214 +567,209 @@
                             <div class="tm-carousel">
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-01.jpg" alt="Dr. Amina El Amrani">
+                                        <img src="img/about-01.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-linkedin"></i></a></li>
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
+                                                <li><a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
                                             </ul>
                                         </figcaption>
                                     </figure>
                                     <div class="tm-about-text">
-                                        <h3 class="mb-3 tm-text-primary tm-about-title">Dr. Amina El Amrani</h3>
-                                        <p>Medical Director with over 15 years in nursing and aesthetic medicine. Specialist in PRP and regenerative therapies.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle">Medical Director</h4>
+                                        <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_1_name">Dr. Amina El Amrani</h3>
+                                        <p data-key="team_1_desc">Medical Director with over 15 years in nursing and aesthetic medicine. Specialist in PRP and regenerative therapies.</p>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_1_role">Medical Director</h4>
                                     </div>
                                 </div>
-                                
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-02.jpg" alt="Nadia Benali">
+                                        <img src="img/about-02.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-linkedin"></i></a></li>
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
+                                                <li><a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
                                             </ul>
                                         </figcaption>
                                     </figure>
                                     <div class="tm-about-text">
-                                        <h3 class="mb-3 tm-text-primary tm-about-title">Nadia Benali</h3>
-                                        <p>Head Nurse with expertise in home care, wound management, and patient education. Fluent in Arabic, French, and English.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle">Head of Nursing</h4>
+                                        <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_2_name">Nadia Benali</h3>
+                                        <p data-key="team_2_desc">Head Nurse with expertise in home care, wound management, and patient education. Fluent in Arabic, French, and English.</p>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_2_role">Head of Nursing</h4>
                                     </div>
                                 </div>
-
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-03.jpg" alt="Khalid Mansouri">
+                                        <img src="img/about-03.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-linkedin"></i></a></li>
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
+                                                <li><a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
                                             </ul>
                                         </figcaption>
                                     </figure>
                                     <div class="tm-about-text">
-                                        <h3 class="mb-3 tm-text-primary tm-about-title">Khalid Mansouri</h3>
-                                        <p>Certified Aesthetic Specialist trained in Hydrafacial, microneedling, and laser treatments. Focus on natural results.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle">Aesthetic Specialist</h4>
+                                        <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_3_name">Khalid Mansouri</h3>
+                                        <p data-key="team_3_desc">Certified Aesthetic Specialist trained in Hydrafacial, microneedling, and laser treatments. Focus on natural results.</p>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_3_role">Aesthetic Specialist</h4>
                                     </div>
                                 </div>
-
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-01.jpg" alt="Fatima Zahra">
+                                        <img src="img/about-01.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-linkedin"></i></a></li>
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
+                                                <li><a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
                                             </ul>
                                         </figcaption>
                                     </figure>
                                     <div class="tm-about-text">
-                                        <h3 class="mb-3 tm-text-primary tm-about-title">Fatima Zahra</h3>
-                                        <p>Senior Nurse specializing in diabetic care, IV therapy, and post-surgical recovery. Known for her gentle approach.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle">Senior Nurse</h4>
+                                        <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_4_name">Fatima Zahra</h3>
+                                        <p data-key="team_4_desc">Senior Nurse specializing in diabetic care, IV therapy, and post-surgical recovery. Known for her gentle approach.</p>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_4_role">Senior Nurse</h4>
                                     </div>
                                 </div>
-                                
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-02.jpg" alt="Sara Lahlou">
+                                        <img src="img/about-02.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-linkedin"></i></a></li>
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
+                                                <li><a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
                                             </ul>
                                         </figcaption>
                                     </figure>
                                     <div class="tm-about-text">
-                                        <h3 class="mb-3 tm-text-primary tm-about-title">Sara Lahlou</h3>
-                                        <p>Clinic Coordinator ensuring smooth operations, appointment scheduling, and patient follow-up with care.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle">Clinic Coordinator</h4>
+                                        <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_5_name">Sara Lahlou</h3>
+                                        <p data-key="team_5_desc">Clinic Coordinator ensuring smooth operations, appointment scheduling, and patient follow-up with care.</p>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_5_role">Clinic Coordinator</h4>
                                     </div>
                                 </div>
-
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-03.jpg" alt="Omar Tazi">
+                                        <img src="img/about-03.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
-                                                <li><a href="#" class="u tm-social-link"><i class="fab fa-linkedin"></i></a></li>
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
+                                                <li><a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
                                             </ul>
                                         </figcaption>
                                     </figure>
                                     <div class="tm-about-text">
-                                        <h3 class="mb-3 tm-text-primary tm-about-title">Omar Tazi</h3>
-                                        <p>Logistics and Home Visit Supervisor. Ensures timely, safe, and fully equipped medical visits across Agadir.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle">Home Care Supervisor</h4>
+                                        <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_6_name">Omar Tazi</h3>
+                                        <p data-key="team_6_desc">Logistics and Home Visit Supervisor. Ensures timely, safe, and fully equipped medical visits across Agadir.</p>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_6_role">Home Care Supervisor</h4>
                                     </div>
                                 </div>
-
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-01.jpg" alt="Laila Idrissi">
+                                        <img src="img/about-01.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-linkedin"></i></a></li>
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
+                                                <li><a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
                                             </ul>
                                         </figcaption>
                                     </figure>
                                     <div class="tm-about-text">
-                                        <h3 class="mb-3 tm-text-primary tm-about-title">Laila Idrissi</h3>
-                                        <p>PRP and Hair Restoration Expert. Helped hundreds regain confidence with natural hair regrowth treatments.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle">PRP Specialist</h4>
+                                        <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_7_name">Laila Idrissi</h3>
+                                        <p data-key="team_7_desc">PRP and Hair Restoration Expert. Helped hundreds regain confidence with natural hair regrowth with PRP.</p>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_7_role">PRP Specialist</h4>
                                     </div>
                                 </div>
-                                
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-02.jpg" alt="Youssef Alami">
+                                        <img src="img/about-02.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-linkedin"></i></a></li>
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
+                                                <li><a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
                                             </ul>
                                         </figcaption>
                                     </figure>
                                     <div class="tm-about-text">
-                                        <h3 class="mb-3 tm-text-primary tm-about-title">Youssef Alami</h3>
-                                        <p>IT and Digital Health Manager. Implements teleconsultation and digital patient records for better care.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle">Digital Health Manager</h4>
+                                        <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_8_name">Youssef Alami</h3>
+                                        <p data-key="team_8_desc">IT and Digital Health Manager. Implements teleconsultation and digital patient records for better care.</p>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_8_role">Digital Health Manager</h4>
                                     </div>
                                 </div>
-
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-03.jpg" alt="Hajar Bennani">
+                                        <img src="img/about-03.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-linkedin"></i></a></li>
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
+                                                <li><a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
                                             </ul>
                                         </figcaption>
                                     </figure>
                                     <div class="tm-about-text">
-                                        <h3 class="mb-3 tm-text-primary tm-about-title">Hajar Bennani</h3>
-                                        <p>Patient Relations Officer. Your first point of contact for appointments, inquiries, and support.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle">Patient Relations</h4>
+                                        <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_9_name">Hajar Bennani</h3>
+                                        <p data-key="team_9_desc">Patient Relations Officer. Your first point of contact for appointments, inquiries, and support.</p>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_9_role">Patient Relations</h4>
                                     </div>
                                 </div>
-
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-01.jpg" alt="Mehdi Rahali">
+                                        <img src="img/about-01.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-linkedin"></i></a></li>
-                                                <li><a href="#" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
+                                                <li><a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
                                             </ul>
                                         </figcaption>
                                     </figure>
                                     <div class="tm-about-text">
-                                        <h3 class="mb-3 tm-text-primary tm-about-title">Mehdi Rahali</h3>
-                                        <p>Pharmacy and Supplies Manager. Ensures all medical materials are authentic, sterile, and up to standard.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle">Medical Supplies</h4>
+                                        <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_10_name">Mehdi Rahali</h3>
+                                        <p data-key="team_10_desc">Pharmacy and Supplies Manager. Ensures all medical materials are authentic, sterile, and up to standard.</p>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_10_role">Medical Supplies</h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                 </div>
-
-                <!-- Contact section -->
                 <div class="tm-section-wrap">
                     <div class="tm-parallax" data-parallax="scroll" data-image-src="img/img-04.jpg"></div>
                     <div id="contact" class="tm-section">
-                        <h2 class="tm-text-primary">Contact Us</h2>
+                        <h2 class="tm-text-primary" data-key="contact_title">Contact Upright</h2>
                         <hr class="mb-5">
                         <div class="row">
                             <div class="col-xl-6 tm-contact-col-l mb-4">
                                 <form id="contact-form" action="" method="POST" class="tm-contact-form">
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control rounded-0" placeholder="Your Name" required />
+                                        <input type="text" name="name" class="form-control rounded-0" placeholder="Name" data-key="form_name" required />
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control rounded-0" placeholder="Your Email" required />
+                                        <input type="email" name="email" class="form-control rounded-0" placeholder="Email" data-key="form_email" required />
                                     </div>
                                     <div class="form-group">
                                         <select class="form-control" id="contact-select" name="inquiry">
-                                            <option value="-">Select Service</option>
-                                            <option value="home-injection">Home Injection</option>
-                                            <option value="wound-care">Wound Care</option>
-                                            <option value="hydrafacial">Hydrafacial</option>
-                                            <option value="prp">PRP Treatment</option>
-                                            <option value="general">General Inquiry</option>
+                                            <option value="-" data-key="form_service">Subject</option>
+                                            <option value="sales" data-key="opt_sales">Sales &amp; Marketing</option>
+                                            <option value="creative" data-key="opt_creative">Creative Design</option>
+                                            <option value="uiux" data-key="opt_uiux">UI / UX</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="Your Message" required></textarea>
+                                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="Message" data-key="form_message" required></textarea>
                                     </div>
-            
                                     <div class="form-group tm-text-right">
-                                        <button type="submit" class="btn btn-primary">Send Message</button>
+                                        <button type="submit" class="btn btn-primary" data-key="form_send">Send</button>
                                     </div>
                                 </form>
                             </div>
                             <div class="col-xl-6 tm-contact-col-r">
-                                <!-- Map -->
                                 <div class="mapouter mb-4">
                                     <div class="gmap_canvas">
                                         <iframe width="100%" height="520" id="gmap_canvas"
@@ -676,15 +777,11 @@
                                             frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                     </div>
                                 </div>
-            
-                                <!-- Address -->
-                                <address class="mb-4">
+                                <address class="mb-4" data-key="contact_address">
                                     94, Rue El Farabi, Bloc E8<br>
                                     Cité Dakhla, Agadir, Morocco 80000<br>
                                     Open: Monday–Saturday | 8:00 AM – 8:00 PM
                                 </address>
-            
-                                <!-- Links -->
                                 <ul class="tm-contact-links mb-4">
                                     <li class="mb-2">
                                         <a href="tel:+212612345678">
@@ -714,12 +811,10 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Copyright -->                
                 <div class="tm-section-wrap tm-copyright row">
                     <div class="col-12">
                         <div class="text-right">
-                            Copyright © 2025 Soins Agadir Center. All rights reserved.
+                            <span data-key="copyright">Copyright 2025 Soins Agadir Center</span>
                         </div> 
                     </div>
                 </div>                 
@@ -734,5 +829,372 @@
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="slick/slick.min.js"></script>
     <script src="js/templatemo-script.js"></script>
+    <script>
+        const translations = {
+            en: {
+                brand: "Soins Agadir Center",
+                nav_home: "Home",
+                nav_gallery: "Gallery",
+                nav_about: "About",
+                nav_contact: "Contact",
+                welcome: "Welcome to Soins Agadir Center",
+                home_p1: "Your trusted nursing and medical care center in Agadir. We provide professional home care, injections, wound care, and aesthetic treatments with certified medical staff.",
+                home_p2: "Located at 94, Rue El Farabi, Bloc E8, Cité Dakhla, Agadir, we are here to support your health and well-being with personalized, high-quality care.",
+                home_p3: "Our team of qualified nurses and doctors ensures safe, effective, and compassionate care tailored to your needs — whether at home or in our modern clinic.",
+                btn_services: "View Our Services",
+                service_injection: "Home Injections",
+                service_injection_desc: "Professional administration of injections, IV therapy, and medication at your home. Safe, sterile, and on-demand service available 24/7.",
+                service_wound: "Wound Care & Dressing",
+                service_wound_desc: "Expert treatment for post-surgical wounds, diabetic ulcers, burns, and chronic injuries. We use advanced materials for faster healing.",
+                service_aesthetic: "Hydrafacial & PRP",
+                service_aesthetic_desc: "Rejuvenate your skin with non-invasive Hydrafacial and PRP hair/skin treatments. Natural glow and hair regrowth with proven results.",
+                gallery_title: "Our Services & Treatments",
+                filter_all: "All",
+                filter_home: "Home Care",
+                filter_aesthetic: "Aesthetic",
+                filter_clinical: "Clinical",
+                filter_team: "Our Team",
+                gal_injection: "Home Injection",
+                gal_hydra: "Hydrafacial",
+                gal_wound: "Wound Care",
+                gal_nurse: "Our Team",
+                gal_prp: "PRP Hair",
+                gal_visit: "Home Visit",
+                gal_room: "Modern Clinic",
+                gal_doctor: "Supervising Doctor",
+                gal_microneedling: "Microneedling",
+                gal_iv: "IV Therapy",
+                gal_equipment: "Sterile Equipment",
+                gal_glow: "Hydrafacial Result",
+                gal_team: "Certified Team",
+                gal_patient: "Personalized Care",
+                gal_entrance: "Soins Agadir Center",
+                gal_prp_face: "PRP Rejuvenation",
+                gal_blood: "Blood Test",
+                gal_sterile: "Maximum Hygiene",
+                gal_smile: "Human Service",
+                gal_hair: "PRP Hair Result",
+                gal_elderly: "Elderly Care",
+                gal_supplies: "Quality Materials",
+                gal_acne: "Acne Treatment",
+                gal_meeting: "Medical Coordination",
+                gal_diabetic: "Diabetes Care",
+                gal_reception: "Warm Welcome",
+                gal_microneedling_result: "Microneedling Result",
+                gal_training: "Continuous Training",
+                gal_postop: "Post-Op Care",
+                gal_location: "Easy Access",
+                gal_hydration: "Deep Hydration",
+                gal_trust: "Trust & Listening",
+                gal_vaccine: "Vaccination",
+                gal_consult: "Consultation",
+                about_title: "About Soins Agadir Center",
+                about_p1: "Established in the heart of Agadir, Soins Agadir Center is a leading nursing and aesthetic care facility dedicated to providing exceptional medical services both in-clinic and at home.",
+                about_p2: "Our team consists of licensed nurses, certified aesthetic specialists, and supervising physicians who follow strict medical protocols to ensure patient safety and satisfaction.",
+                about_p3: "We specialize in home nursing, post-operative care, chronic disease management, and advanced aesthetic treatments using state-of-the-art technology and medical-grade products.",
+                about_p4: "From routine injections to complex wound care and rejuvenating skin treatments, we bring professional healthcare directly to you — with compassion, precision, and respect.",
+                team_1_name: "Dr. Amina El Amrani",
+                team_1_desc: "Medical Director with over 15 years in nursing and aesthetic medicine. Specialist in PRP and regenerative therapies.",
+                team_1_role: "Medical Director",
+                team_2_name: "Nadia Benali",
+                team_2_desc: "Head Nurse with expertise in home care, wound management, and patient education. Fluent in Arabic, French, and English.",
+                team_2_role: "Head of Nursing",
+                team_3_name: "Khalid Mansouri",
+                team_3_desc: "Certified Aesthetic Specialist trained in Hydrafacial, microneedling, and laser treatments. Focus on natural results.",
+                team_3_role: "Aesthetic Specialist",
+                team_4_name: "Fatima Zahra",
+                team_4_desc: "Senior Nurse specializing in diabetic care, IV therapy, and post-surgical recovery. Known for her gentle approach.",
+                team_4_role: "Senior Nurse",
+                team_5_name: "Sara Lahlou",
+                team_5_desc: "Clinic Coordinator ensuring smooth operations, appointment scheduling, and patient follow-up with care.",
+                team_5_role: "Clinic Coordinator",
+                team_6_name: "Omar Tazi",
+                team_6_desc: "Logistics and Home Visit Supervisor. Ensures timely, safe, and fully equipped medical visits across Agadir.",
+                team_6_role: "Home Care Supervisor",
+                team_7_name: "Laila Idrissi",
+                team_7_desc: "PRP and Hair Restoration Expert. Helped hundreds regain confidence with natural hair regrowth treatments.",
+                team_7_role: "PRP Specialist",
+                team_8_name: "Youssef Alami",
+                team_8_desc: "IT and Digital Health Manager. Implements teleconsultation and digital patient records for better care.",
+                team_8_role: "Digital Health Manager",
+                team_9_name: "Hajar Bennani",
+                team_9_desc: "Patient Relations Officer. Your first point of contact for appointments, inquiries, and support.",
+                team_9_role: "Patient Relations",
+                team_10_name: "Mehdi Rahali",
+                team_10_desc: "Pharmacy and Supplies Manager. Ensures all medical materials are authentic, sterile, and up to standard.",
+                team_10_role: "Medical Supplies",
+                contact_title: "Contact Upright",
+                form_name: "Name",
+                form_email: "Email",
+                form_service: "Subject",
+                opt_sales: "Sales & Marketing",
+                opt_creative: "Creative Design",
+                opt_uiux: "UI / UX",
+                form_message: "Message",
+                form_send: "Send",
+                contact_address: "120-240 eget purus luctus sodales. Sed auctor odio quis ligula dignissim efficitur vitae vitae quam 16502",
+                contact_phone1: "Tel: 010-020-0340",
+                contact_phone2: "Email: info@company.com",
+                copyright: "Copyright 2025 Upright Company"
+            },
+            fr: {
+                brand: "Soins Agadir Center",
+                nav_home: "Accueil",
+                nav_gallery: "Galerie",
+                nav_about: "À Propos",
+                nav_contact: "Contact",
+                welcome: "Bienvenue au Soins Agadir Center",
+                home_p1: "Votre centre de soins infirmiers et médicaux de confiance à Agadir. Nous proposons des soins à domicile, injections, soins des plaies et traitements esthétiques avec du personnel médical certifié.",
+                home_p2: "Situé au 94, Rue El Farabi, Bloc E8, Cité Dakhla, Agadir, nous sommes là pour soutenir votre santé et bien-être avec des soins personnalisés de haute qualité.",
+                home_p3: "Notre équipe d'infirmiers et médecins qualifiés garantit des soins sûrs, efficaces et compatissants adaptés à vos besoins — à domicile ou dans notre clinique moderne.",
+                btn_services: "Voir Nos Services",
+                service_injection: "Injections à Domicile",
+                service_injection_desc: "Administration professionnelle d'injections, perfusions et médicaments à votre domicile. Service sûr, stérile et disponible 24/7.",
+                service_wound: "Soins des Plaies & Pansements",
+                service_wound_desc: "Traitement expert des plaies post-opératoires, ulcères diabétiques, brûlures et blessures chroniques. Nous utilisons des matériaux avancés pour une guérison plus rapide.",
+                service_aesthetic: "Hydrafacial & PRP",
+                service_aesthetic_desc: "Rajeunissez votre peau avec des traitements non invasifs Hydrafacial et PRP cheveux/peau. Éclat naturel et repousse capillaire avec des résultats prouvés.",
+                gallery_title: "Nos Services & Traitements",
+                filter_all: "Tout",
+                filter_home: "Soins à Domicile",
+                filter_aesthetic: "Esthétique",
+                filter_clinical: "Clinique",
+                filter_team: "Notre Équipe",
+                gal_injection: "Injection à Domicile",
+                gal_hydra: "Hydrafacial",
+                gal_wound: "Pansement & Soins",
+                gal_nurse: "Notre Équipe",
+                gal_prp: "PRP Capillaire",
+                gal_visit: "Visite à Domicile",
+                gal_room: "Clinique Moderne",
+                gal_doctor: "Médecin Superviseur",
+                gal_microneedling: "Microneedling",
+                gal_iv: "Perfusion IV",
+                gal_equipment: "Matériel Stérile",
+                gal_glow: "Résultat Hydrafacial",
+                gal_team: "Équipe Certifiée",
+                gal_patient: "Soins Personnalisés",
+                gal_entrance: "Soins Agadir Center",
+                gal_prp_face: "PRP Rajeunissement",
+                gal_blood: "Prélèvement Sanguin",
+                gal_sterile: "Hygiène Maximale",
+                gal_smile: "Service Humain",
+                gal_hair: "Résultat PRP Cheveux",
+                gal_elderly: "Soins Personnes Âgées",
+                gal_supplies: "Matériel de Qualité",
+                gal_acne: "Traitement Acné",
+                gal_meeting: "Coordination Médicale",
+                gal_diabetic: "Soins Diabète",
+                gal_reception: "Accueil Chaleureux",
+                gal_microneedling_result: "Résultat Microneedling",
+                gal_training: "Formation Continue",
+                gal_postop: "Soins Post-Op",
+                gal_location: "Facilement Accessible",
+                gal_hydration: "Hydratation Profonde",
+                gal_trust: "Confiance & Écoute",
+                gal_vaccine: "Vaccination",
+                gal_consult: "Consultation",
+                about_title: "À Propos de Soins Agadir Center",
+                about_p1: "Établi au cœur d'Agadir, Soins Agadir Center est un centre de soins infirmiers et esthétiques de premier plan dédié à fournir des services médicaux exceptionnels en clinique et à domicile.",
+                about_p2: "Notre équipe est composée d'infirmiers diplômés, de spécialistes esthétiques certifiés et de médecins superviseurs qui suivent des protocoles médicaux stricts pour garantir la sécurité et la satisfaction des patients.",
+                about_p3: "Nous nous spécialisons dans les soins infirmiers à domicile, les soins post-opératoires, la gestion des maladies chroniques et les traitements esthétiques avancés utilisant des technologies de pointe et des produits de qualité médicale.",
+                about_p4: "Des injections de routine aux soins complexes des plaies et aux traitements de rajeunissement de la peau, nous apportons des soins professionnels directement à vous — avec compassion, précision et respect.",
+                team_1_name: "Dr. Amina El Amrani",
+                team_1_desc: "Directrice médicale avec plus de 15 ans en soins infirmiers et médecine esthétique. Spécialiste en PRP et thérapies régénératives.",
+                team_1_role: "Directrice Médicale",
+                team_2_name: "Nadia Benali",
+                team_2_desc: "Infirmière en chef experte en soins à domicile, gestion des plaies et éducation des patients. Parle arabe, français et anglais.",
+                team_2_role: "Responsable Infirmière",
+                team_3_name: "Khalid Mansouri",
+                team_3_desc: "Spécialiste esthétique certifié formé en Hydrafacial, microneedling et traitements laser. Focus sur les résultats naturels.",
+                team_3_role: "Spécialiste Esthétique",
+                team_4_name: "Fatima Zahra",
+                team_4_desc: "Infirmière senior spécialisée en soins diabétiques, thérapie IV et récupération post-chirurgicale. Connue pour son approche douce.",
+                team_4_role: "Infirmière Senior",
+                team_5_name: "Sara Lahlou",
+                team_5_desc: "Coordinatrice de clinique assurant des opérations fluides, la prise de rendez-vous et le suivi des patients avec soin.",
+                team_5_role: "Coordinatrice Clinique",
+                team_6_name: "Omar Tazi",
+                team_6_desc: "Superviseur logistique et visites à domicile. Assure des visites médicales ponctuelles, sûres et entièrement équipées à travers Agadir.",
+                team_6_role: "Superviseur Soins à Domicile",
+                team_7_name: "Laila Idrissi",
+                team_7_desc: "Experte en PRP et restauration capillaire. A aidé des centaines de personnes à retrouver confiance avec des traitements naturels de repousse.",
+                team_7_role: "Spécialiste PRP",
+                team_8_name: "Youssef Alami",
+                team_8_desc: "Responsable IT et santé numérique. Met en place la téléconsultation et les dossiers patients numériques pour de meilleurs soins.",
+                team_8_role: "Responsable Santé Numérique",
+                team_9_name: "Hajar Bennani",
+                team_9_desc: "Responsable des relations patients. Votre premier point de contact pour les rendez-vous, demandes et soutien.",
+                team_9_role: "Relations Patients",
+                team_10_name: "Mehdi Rahali",
+                team_10_desc: "Responsable pharmacie et fournitures. Assure que tous les matériaux médicaux sont authentiques, stériles et conformes aux normes.",
+                team_10_role: "Fournitures Médicales",
+                contact_title: "Contactez-Nous",
+                form_name: "Votre Nom",
+                form_email: "Votre Email",
+                form_service: "Sujet",
+                opt_sales: "Ventes & Marketing",
+                opt_creative: "Design Créatif",
+                opt_uiux: "UI / UX",
+                form_message: "Message",
+                form_send: "Envoyer",
+                contact_address: "120-240 eget purus luctus sodales. Sed auctor odio quis ligula dignissim efficitur vitae vitae quam 16502",
+                contact_phone1: "Tél: 010-020-0340",
+                contact_phone2: "Email: info@company.com",
+                copyright: "Copyright 2025 Upright Company"
+            },
+            ar: {
+                brand: "مركز سوينس أغادير",
+                nav_home: "الرئيسية",
+                nav_gallery: "معرض الصور",
+                nav_about: "من نحن",
+                nav_contact: "اتصل بنا",
+                welcome: "مرحباً بكم في مركز سوينس أغادير",
+                home_p1: "مركز الرعاية التمريضية والطبية الموثوق في أغادير. نقدم رعاية منزلية احترافية، حقن, علاج الجروح وعلاجات تجميلية بطاقم طبي معتمد.",
+                home_p2: "يقع في 94, شارع الفرابي, بلوك E8, حي الداخلة, أغادير, نحن هنا لدعم صحتك ورفاهيتك برعاية شخصية عالية الجودة.",
+                home_p3: "فريقنا من الممرضين والأطباء المؤهلين يضمن رعاية آمنة وفعالة ورحيمة مصممة حسب احتياجاتك — في المنزل أو في عيادتنا الحديثة.",
+                btn_services: "عرض خدماتنا",
+                service_injection: "حقن منزلية",
+                service_injection_desc: "إعطاء الحقن والمحاليل والأدوية باحترافية في منزلك. خدمة آمنة ومعقمة ومتاحة 24/7.",
+                service_wound: "علاج الجروح والتضميد",
+                service_wound_desc: "علاج متخصص للجروح بعد العمليات, القرح السكرية, الحروق والإصابات المزمنة. نستخدم مواد متقدمة لشفاء أسرع.",
+                service_aesthetic: "هيدرافيشيال و PRP",
+                service_aesthetic_desc: "جددي بشرتك بعلاجات غير جراحية هيدرافيشيال و PRP للشعر/البشرة. توهج طبيعي ونمو شعر بنتائج مثبتة.",
+                gallery_title: "خدماتنا وعلاجاتنا",
+                filter_all: "الكل",
+                filter_home: "رعاية منزلية",
+                filter_aesthetic: "تجميل",
+                filter_clinical: "عيادة",
+                filter_team: "فريقنا",
+                gal_injection: "حقن منزلية",
+                gal_hydra: "هيدرافيشيال",
+                gal_wound: "علاج الجروح",
+                gal_nurse: "فريقنا",
+                gal_prp: "PRP شعر",
+                gal_visit: "زيارة منزلية",
+                gal_room: "عيادة حديثة",
+                gal_doctor: "طبيب مشرف",
+                gal_microneedling: "ميكرونيدلينغ",
+                gal_iv: "محاليل وريدية",
+                gal_equipment: "معدات معقمة",
+                gal_glow: "نتيجة هيدرافيشيال",
+                gal_team: "فريق معتمد",
+                gal_patient: "رعاية شخصية",
+                gal_entrance: "مركز سوينس أغادير",
+                gal_prp_face: "PRP تجميل",
+                gal_blood: "سحب دم",
+                gal_sterile: "نظافة قصوى",
+                gal_smile: "خدمة إنسانية",
+                gal_hair: "نتيجة PRP شعر",
+                gal_elderly: "رعاية المسنين",
+                gal_supplies: "مواد عالية الجودة",
+                gal_acne: "علاج حب الشباب",
+                gal_meeting: "تنسيق طبي",
+                gal_diabetic: "رعاية السكري",
+                gal_reception: "استقبال دافئ",
+                gal_microneedling_result: "نتيجة ميكرونيدلينغ",
+                gal_training: "تدريب مستمر",
+                gal_postop: "رعاية ما بعد العملية",
+                gal_location: "سهل الوصول",
+                gal_hydration: "ترطيب عميق",
+                gal_trust: "ثقة واستماع",
+                gal_vaccine: "تطعيم",
+                gal_consult: "استشارة",
+                about_title: "عن مركز سوينس أغادير",
+                about_p1: "تأسس في قلب أغادير, مركز سوينس أغادير هو مرفق رعاية تمريضية وتجميلية رائد مكرس لتقديم خدمات طبية استثنائية في العيادة وفي المنزل.",
+                about_p2: "يتكون فريقنا من ممرضين مرخصين, متخصصين تجميليين معتمدين, وأطباء مشرفين يتبعون بروتوكولات طبية صارمة لضمان سلامة المرضى ورضاهم.",
+                about_p3: "نتخصص في الرعاية التمريضية المنزلية, الرعاية بعد العمليات, إدارة الأمراض المزمنة, والعلاجات التجميلية المتقدمة باستخدام تكنولوجيا حديثة ومنتجات طبية.",
+                about_p4: "من الحقن الروتينية إلى علاج الجروح المعقدة وعلاجات تجديد البشرة, نحن نجلب الرعاية الصحية المهنية مباشرة إليك — برحمة ودقة واحترام.",
+                team_1_name: "د. أمينة العمراني",
+                team_1_desc: "المديرة الطبية بخبرة تزيد عن 15 عاماً في التمريض والطب التجميلي. متخصصة في PRP والعلاجات التجديدية.",
+                team_1_role: "المديرة الطبية",
+                team_2_name: "نادية بنعلي",
+                team_2_desc: "كبيرة الممرضات بخبرة في الرعاية المنزلية, إدارة الجروح وتثقيف المرضى. تتحدث العربية والفرنسية والإنجليزية.",
+                team_2_role: "رئيسة التمريض",
+                team_3_name: "خالد المنصوري",
+                team_3_desc: "أخصائي تجميل معتمد مدرب على هيدرافيشيال, ميكرونيدلينغ وعلاجات الليزر. يركز على النتائج الطبيعية.",
+                team_3_role: "أخصائي تجميل",
+                team_4_name: "فاطمة الزهراء",
+                team_4_desc: "ممرضة كبيرة متخصصة في رعاية السكري, العلاج الوريدي والتعافي بعد الجراحة. معروفة بلطفها.",
+                team_4_role: "ممرضة كبيرة",
+                team_5_name: "سارة لحلو",
+                team_5_desc: "منسقة العيادة تضمن عمليات سلسة, جدولة المواعيد ومتابعة المرضى بعناية.",
+                team_5_role: "منسقة العيادة",
+                team_6_name: "عمر التازي",
+                team_6_desc: "مشرف اللوجستيات والزيارات المنزلية. يضمن زيارات طبية في الوقت المحدد, آمنة ومجهزة بالكامل في أغادير.",
+                team_6_role: "مشرف الرعاية المنزلية",
+                team_7_name: "ليلى الإدريسي",
+                team_7_desc: "خبيرة PRP واستعادة الشعر. ساعدت المئات على استعادة الثقة بعلاجات نمو الشعر الطبيعية.",
+                team_7_role: "أخصائية PRP",
+                team_8_name: "يوسف العلمي",
+                team_8_desc: "مدير تكنولوجيا المعلومات والصحة الرقمية. ينفذ الاستشارات عن بعد وسجلات المرضى الرقمية لرعاية أفضل.",
+                team_8_role: "مدير الصحة الرقمية",
+                team_9_name: "هاجر بناني",
+                team_9_desc: "مسؤولة علاقات المرضى. نقطة الاتصال الأولى للمواعيد والاستفسارات والدعم.",
+                team_9_role: "علاقات المرضى",
+                team_10_name: "مهدي الرحالي",
+                team_10_desc: "مدير الصيدلية والمستلزمات. يضمن أن جميع المواد الطبية أصلية ومعقمة ووفقاً للمعايير.",
+                team_10_role: "المستلزمات الطبية",
+                contact_title: "اتصل بنا",
+                form_name: "اسمك",
+                form_email: "بريدك الإلكتروني",
+                form_service: "الموضوع",
+                opt_sales: "المبيعات والتسويق",
+                opt_creative: "التصميم الإبداعي",
+                opt_uiux: "UI / UX",
+                form_message: "رسالتك",
+                form_send: "إرسال",
+                contact_address: "120-240 eget purus luctus sodales. Sed auctor odio quis ligula dignissim efficitur vitae vitae quam 16502",
+                contact_phone1: "هاتف: 010-020-0340",
+                contact_phone2: "البريد: info@company.com",
+                copyright: "حقوق النشر 2025 شركة Upright"
+            }
+        };
+        document.addEventListener("DOMContentLoaded", () => {
+            const langToggle = document.getElementById("langToggle");
+            const langMenu = document.getElementById("langMenu");
+            const themeToggle = document.getElementById("themeToggle");
+            let currentLang = localStorage.getItem("lang") || "fr";
+            applyLanguage(currentLang);
+            langToggle.addEventListener("click", () => {
+                langMenu.classList.toggle("show");
+            });
+            document.querySelectorAll(".tm-lang-option").forEach(opt => {
+                opt.addEventListener("click", () => {
+                    const lang = opt.dataset.lang;
+                    applyLanguage(lang);
+                    localStorage.setItem("lang", lang);
+                    langMenu.classList.remove("show");
+                });
+            });
+            document.addEventListener("click", (e) => {
+                if (!langToggle.contains(e.target) && !langMenu.contains(e.target)) {
+                    langMenu.classList.remove("show");
+                }
+            });
+            const savedTheme = localStorage.getItem("theme") || "light";
+            document.body.setAttribute("data-theme", savedTheme);
+            updateThemeIcon(savedTheme);
+            themeToggle.addEventListener("click", () => {
+                const newTheme = document.body.getAttribute("data-theme") === "light" ? "dark" : "light";
+                document.body.setAttribute("data-theme", newTheme);
+                localStorage.setItem("theme", newTheme);
+                updateThemeIcon(newTheme);
+            });
+            function updateThemeIcon(theme) {
+                themeToggle.innerHTML = theme === "dark" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            }
+            function applyLanguage(lang) {
+                document.querySelectorAll("[data-key]").forEach(el => {
+                    const key = el.dataset.key;
+                    if (translations[lang][key]) {
+                        el.textContent = translations[lang][key];
+                    }
+                });
+                document.documentElement.lang = lang === "ar" ? "ar" : "en";
+                document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
+            }
+        });
+    </script>
 </body>
 </html>
