@@ -789,30 +789,30 @@
                 <div class="tm-section-wrap">
                     <div class="tm-parallax" data-parallax="scroll" data-image-src="img/img-04.jpg"></div>
                     <div id="contact" class="tm-section">
-                        <h2 class="tm-text-primary" data-key="contact_title">Contact Upright</h2>
+                        <h2 class="tm-text-primary" data-key="contact_title"></h2>
                         <hr class="mb-5">
                         <div class="row">
                             <div class="col-xl-6 tm-contact-col-l mb-4">
                                 <form id="contact-form" action="" method="POST" class="tm-contact-form">
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control rounded-0" placeholder="Name" data-key="form_name" required />
+                                        <input type="text" name="name" class="form-control rounded-0" data-key="form_name" required />
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control rounded-0" placeholder="Email" data-key="form_email" required />
+                                        <input type="email" name="email" class="form-control rounded-0" data-key="form_email" required />
                                     </div>
                                     <div class="form-group">
                                         <select class="form-control" id="contact-select" name="inquiry">
-                                            <option value="-" data-key="form_service">Subject</option>
-                                            <option value="sales" data-key="opt_sales">Sales &amp; Marketing</option>
-                                            <option value="creative" data-key="opt_creative">Creative Design</option>
-                                            <option value="uiux" data-key="opt_uiux">UI / UX</option>
+                                            <option value="-" data-key="form_service"></option>
+                                            <option value="sales" data-key="opt_sales"></option>
+                                            <option value="creative" data-key="opt_creative"></option>
+                                            <option value="uiux" data-key="opt_uiux"></option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="Message" data-key="form_message" required></textarea>
+                                        <textarea rows="8" name="message" class="form-control rounded-0" data-key="form_message" required></textarea>
                                     </div>
                                     <div class="form-group tm-text-right">
-                                        <button type="submit" class="btn btn-primary" data-key="form_send">Send</button>
+                                        <button type="submit" class="btn btn-primary" data-key="form_send"></button>
                                     </div>
                                 </form>
                             </div>
@@ -824,11 +824,7 @@
                                             frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                     </div>
                                 </div>
-                                <address class="mb-4" data-key="contact_address">
-                                    94, Rue El Farabi, Bloc E8<br>
-                                    Cité Dakhla, Agadir, Morocco 80000<br>
-                                    Open: Monday–Saturday | 8:00 AM – 8:00 PM
-                                </address>
+                                <address class="mb-4" data-key="contact_address"></address>
                                 <ul class="tm-contact-links mb-4">
                                     <li class="mb-2">
                                         <a href="tel:+212612345678">
@@ -878,15 +874,18 @@
     <script src="js/templatemo-script.js"></script>
     <script>
         let translations;
-        fetch('translations.json?v=' + new Date().getTime()) // Cache busting
-            .then(response => response.json())
+        fetch('translations.json?v=' + new Date().getTime())
+            .then(response => {
+                console.log('Fetch response status:', response.status); // Log status to check if 200 OK
+                return response.json();
+            })
             .then(data => {
                 translations = data;
-                // Apply the default language after loading
+                console.log('Translations loaded successfully:', translations); // Log to confirm data
                 const currentLang = localStorage.getItem("lang") || "fr";
                 applyLanguage(currentLang);
             })
-            .catch(error => console.error('Error loading translations:', error));
+            .catch(error => console.error('Fetch error:', error)); // Log any errors
 
         document.addEventListener("DOMContentLoaded", () => {
             const langToggle = document.getElementById("langToggle");
