@@ -151,6 +151,9 @@
         padding-left: 20px;
         padding-right: 0;
     }
+    address {
+        white-space: pre-line; /* Preserves \n as line breaks */
+    }
     </style>
 </head>
 <body data-theme="light" dir="ltr">
@@ -930,21 +933,20 @@
             themeToggle.innerHTML = theme === "dark" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         }
 
-    function applyLanguage(lang) {
-        if (!translations) return;
-        document.querySelectorAll("[data-key]").forEach(el => {
-            const key = el.dataset.key;
-            if (translations[lang][key]) {
-                if (key === 'contact_address') {
-                   el.innerHTML = translations[lang][key].replace(/\n/g, '<br>');
-                } else {
+        function applyLanguage(lang) {
+            if (!translations) return; // Wait for JSON to load if not ready
+
+            document.querySelectorAll("[data-key]").forEach(el => {
+                const key = el.dataset.key;
+                if (translations[lang][key]) {
                     el.textContent = translations[lang][key];
                 }
-    }
-  });
-  document.documentElement.lang = lang;
-  document.body.style.direction = "ltr";
-}
+            });
+
+            document.documentElement.lang = lang;
+            // Always keep LTR direction to avoid layout changes
+            document.body.style.direction = "ltr";
+        }
     });
 </script>
 </body>
