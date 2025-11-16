@@ -197,7 +197,7 @@ $(document).ready(function () {
     $('.tm-carousel').slick({
         dots: true,
         infinite: false,
-        arrows: false,
+        arrows: true,
         speed: 300,
         slidesToShow: 6,
         slidesToScroll: 6,

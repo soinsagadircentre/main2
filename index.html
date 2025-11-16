@@ -32,13 +32,123 @@
             transition: background 0.3s, color 0.3s;
         }
         .tm-text-primary { color: var(--primary) !important; }
-        .tm-text-container, .media-body, .tm-about-text, .tm-contact-form, address, .tm-contact-links a {
-            color: var(--text);
-        }
+    .tm-text-container, .media-body, .tm-about-text, .tm-contact-form, address, .tm-contact-links a {
+        color: var(--text);
+    }
+    p {
+        color: var(--text) !important;
+    }
+    [data-theme="dark"] p {
+        color: white !important;
+    }
         .tm-gallery-item figcaption, .tm-post-link { color: #fff; }
         .tm-section, .tm-section-wrap { background: var(--bg); }
         hr { border-color: var(--hr); }
         .tm-carousel-item, .tm-text-container, .media { background: var(--card-bg); }
+        .tm-carousel-item {
+            height: 420px;
+        }
+        html[lang="en"] .tm-carousel-item {
+            height: 420px;
+        }
+        html[lang="fr"] .tm-carousel-item {
+            height: 480px;
+            overflow: visible !important;
+        }
+        html[lang="ar"] .tm-carousel-item {
+            height: 360px;
+        }
+        html[lang="ar"] .tm-about-subtitle {
+            margin-top: 15px !important;
+        }
+        html[lang="fr"] .tm-about-subtitle {
+            margin-top: 65px !important;
+        }
+        html[lang="fr"] .tm-carousel-item:nth-child(1) .tm-about-subtitle { margin-top: 10px !important; transform: translateY(0px); }
+        html[lang="fr"] .tm-carousel-item:nth-child(2) .tm-about-subtitle { margin-top: 10px !important; transform: translateY(0px); }
+        html[lang="fr"] .tm-carousel-item:nth-child(3) .tm-about-subtitle { margin-top: 10px !important; transform: translateY(0px); font-size: 14px; }
+        html[lang="fr"] .tm-carousel-item:nth-child(4) .tm-about-subtitle { margin-top: 10px !important; transform: translateY(0px); }
+        html[lang="fr"] .tm-carousel-item:nth-child(5) .tm-about-subtitle { margin-top: 10px !important; transform: translateY(0px); }
+        html[lang="fr"] .tm-carousel-item:nth-child(6) .tm-about-subtitle { margin-top: 10px !important; transform: translateY(0px); font-size: 14px; }
+        html[lang="fr"] .tm-carousel-item:nth-child(7) .tm-about-subtitle { margin-top: 10px !important; transform: translateY(0px); }
+        html[lang="fr"] .tm-carousel-item:nth-child(8) .tm-about-subtitle { margin-top: 10px !important; transform: translateY(0px); }
+        html[lang="fr"] .tm-carousel-item:nth-child(9) .tm-about-subtitle { margin-top: 10px !important; transform: translateY(0px); }
+        html[lang="fr"] .tm-carousel-item:nth-child(10) .tm-about-subtitle { margin-top: 10px !important; transform: translateY(0px); }
+        .tm-about-text p {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        html[lang="fr"] .tm-about-text p {
+            height: 200px;
+            overflow: hidden;
+            align-items: flex-start;
+        }
+
+        .tm-about-subtitle {
+            margin-bottom: 0 !important;
+            padding: 0 !important;
+        }
+        .slick-slider {
+            transform: translateX(15px);
+        }
+        html[lang="en"] .slick-slider,
+        html[lang="ar"] .slick-slider {
+            transform: translateX(15px);
+        }
+        .slick-prev, .slick-next {
+            width: 40px;
+            height: 40px;
+            background: var(--primary) !important;
+            border-radius: 50%;
+            z-index: 1;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            transform: translateY(-50px);
+            outline: none !important;
+            border: none !important;
+            box-shadow: 0 0 0 0 !important;
+        }
+        .slick-prev:focus, .slick-next:focus {
+            outline: none !important;
+            box-shadow: 0 0 0 0 !important;
+            background: var(--primary) !important;
+        }
+        .slick-prev:hover, .slick-next:hover {
+            box-shadow: 0 0 0 0 !important;
+            background: var(--primary) !important;
+        }
+        .slick-prev.slick-disabled,
+        .slick-next.slick-disabled {
+            display: none !important;
+        }
+        .slick-prev:before, .slick-next:before {
+            color: white;
+            font-size: 20px;
+        }
+        .slick-prev {
+            left: -50px;
+        }
+        .slick-next {
+            right: -50px;
+        }
+        address {
+            margin-bottom: 0 !important;
+            line-height: 1.2;
+            transform: translateY(-15px);
+        }
+        .tm-contact-links {
+            margin-top: -10px !important;
+        }
+        .tm-parallax {
+            height: 20px !important;
+        }
+        #contact {
+            padding-top: 0px !important;
+            margin-top: -180px !important;
+            transform: translateY(80px);
+        }
         .tm-brand-box, #tm-sidebar { background: rgba(0,0,0,0.05); }
         [data-theme="dark"] .tm-brand-box, [data-theme="dark"] #tm-sidebar { background: rgba(0,0,0,0.3); }
         .tm-floating-icons {
@@ -119,8 +229,18 @@
     html[lang="ar"] select,
     html[lang="ar"] .tm-about-title,
     html[lang="ar"] .tm-about-subtitle {
-        direction: rtl;
-        text-align: right;
+        direction: ltr;
+        text-align: left;
+    }
+
+    /* Center text in about section */
+    .tm-about-text {
+        text-align: center !important;
+    }
+    .tm-about-text h3,
+    .tm-about-text h4,
+    .tm-about-text p {
+        text-align: center !important;
     }
 
     /* Optional: Adjust padding/margins for icons in media (keep icon on left, text right-aligned) */
@@ -151,8 +271,98 @@
         padding-left: 20px;
         padding-right: 0;
     }
+    html[lang="ar"] .tm-col-home-l {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    html[lang="ar"] .text-right {
+        text-align: center !important;
+    }
+    html[lang="ar"] .tm-post-link {
+        text-align: center !important;
+    }
+    html[lang="ar"] .media {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 15px !important;
+        background: transparent !important;
+    }
+    html[lang="ar"] .tm-text-container {
+        background: transparent !important;
+    }
     address {
         white-space: pre-line; /* Preserves \n as line breaks */
+    }
+    .tm-col-home-l {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    .tm-row-home {
+        margin-bottom: -270px !important;
+    }
+    .tm-img-home-container {
+        margin-top: -270px !important;
+    }
+    .media {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 15px !important;
+        background: transparent !important;
+    }
+    .media-body {
+        margin-top: 0 !important;
+    }
+    .tm-post-link {
+        margin-bottom: 15px !important;
+    }
+    .tm-text-container {
+        background: transparent !important;
+        text-align: center !important;
+    }
+    .tm-text-container p {
+        text-align: center !important;
+    }
+    .text-right {
+        text-align: center !important;
+        margin-top: 30px !important;
+    }
+    .tm-post-icon {
+        display: block;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-bottom: -20px !important;
+        width: 100px;
+        height: 100px;
+    }
+    .tm-icon-container {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-bottom: 24px !important;
+        text-align: center !important;
+    }
+    .tm-icon-container p {
+        text-align: center !important;
+    }
+    .media:first-of-type .tm-post-icon {
+        margin-top: 15px !important;
+        margin-bottom: -15px !important;
+    }
+    .media:nth-of-type(2) .tm-post-icon {
+        margin-bottom: -25px !important;
+    }
+    .media:nth-of-type(3) .tm-post-icon {
+        margin-top: 10px !important;
+        margin-bottom: -25px !important;
     }
     </style>
 </head>
@@ -610,34 +820,13 @@
                             </div>
                             <div class="tm-col-about tm-col-about-r">
                                 <img src="img/img-about-01.jpg" alt="Image" class="img-fluid mb-5 tm-img-about">
-                                <p data-key="about_p4">
-                                    From routine injections to complex wound care and rejuvenating skin treatments, we bring 
-                                    professional healthcare directly to you — with compassion, precision, and respect.
-                                </p>
                             </div>
                         </div>
                         <div class="mt-5">
                             <div class="tm-carousel">
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-01.jpg" alt="Image">
-                                        <figcaption>
-                                            <ul class="tm-social">
-                                                <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
-                                                <li><a href="https://twitter.com" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="https://instagram.com" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
-                                            </ul>
-                                        </figcaption>
-                                    </figure>
-                                    <div class="tm-about-text">
-                                        <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_1_name">Dr. Amina El Amrani</h3>
-                                        <p data-key="team_1_desc">Medical Director with over 15 years in nursing and aesthetic medicine. Specialist in PRP and regenerative therapies.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_1_role">Medical Director</h4>
-                                    </div>
-                                </div>
-                                <div class="tm-carousel-item">
-                                    <figure class="effect-honey mb-4">
-                                        <img src="img/about-02.jpg" alt="Image">
+                                        <img src="img/staff1.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
                                                 <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
@@ -649,12 +838,12 @@
                                     <div class="tm-about-text">
                                         <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_2_name">Nadia Benali</h3>
                                         <p data-key="team_2_desc">Head Nurse with expertise in home care, wound management, and patient education. Fluent in Arabic, French, and English.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_2_role">Head of Nursing</h4>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" style="margin-top: 20px; text-align: center;" data-key="team_2_role">Director</h4>
                                     </div>
                                 </div>
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-03.jpg" alt="Image">
+                                        <img src="img/staff2.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
                                                 <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
@@ -666,12 +855,12 @@
                                     <div class="tm-about-text">
                                         <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_3_name">Khalid Mansouri</h3>
                                         <p data-key="team_3_desc">Certified Aesthetic Specialist trained in Hydrafacial, microneedling, and laser treatments. Focus on natural results.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_3_role">Aesthetic Specialist</h4>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" style="margin-top: 20px; text-align: center;" data-key="team_3_role">Aesthetic Specialist</h4>
                                     </div>
                                 </div>
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-01.jpg" alt="Image">
+                                        <img src="img/staff5.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
                                                 <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
@@ -683,12 +872,12 @@
                                     <div class="tm-about-text">
                                         <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_4_name">Fatima Zahra</h3>
                                         <p data-key="team_4_desc">Senior Nurse specializing in diabetic care, IV therapy, and post-surgical recovery. Known for her gentle approach.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_4_role">Senior Nurse</h4>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" style="margin-top: 50px; text-align: center;" data-key="team_4_role">Senior Nurse</h4>
                                     </div>
                                 </div>
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-02.jpg" alt="Image">
+                                        <img src="img/staff4.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
                                                 <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
@@ -700,12 +889,12 @@
                                     <div class="tm-about-text">
                                         <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_5_name">Sara Lahlou</h3>
                                         <p data-key="team_5_desc">Clinic Coordinator ensuring smooth operations, appointment scheduling, and patient follow-up with care.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_5_role">Clinic Coordinator</h4>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" style="margin-top: 50px; text-align: center;" data-key="team_5_role">Clinic Coordinator</h4>
                                     </div>
                                 </div>
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-03.jpg" alt="Image">
+                                        <img src="img/staff3.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
                                                 <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
@@ -717,12 +906,12 @@
                                     <div class="tm-about-text">
                                         <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_6_name">Omar Tazi</h3>
                                         <p data-key="team_6_desc">Logistics and Home Visit Supervisor. Ensures timely, safe, and fully equipped medical visits across Agadir.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_6_role">Home Care Supervisor</h4>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" style="margin-top: 30px; text-align: center;" data-key="team_6_role">Home Care Supervisor</h4>
                                     </div>
                                 </div>
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-01.jpg" alt="Image">
+                                        <img src="img/staff6.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
                                                 <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
@@ -733,13 +922,13 @@
                                     </figure>
                                     <div class="tm-about-text">
                                         <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_7_name">Laila Idrissi</h3>
-                                        <p data-key="team_7_desc">PRP and Hair Restoration Expert. Helped hundreds regain confidence with natural hair regrowth with PRP.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_7_role">PRP Specialist</h4>
+                                        <p data-key="team_7_desc">PRP and Hair Restoration Expert. Helped hundreds regain confidence with natural hair regrowth treatments.</p>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" style="margin-top: 50px; text-align: center;" data-key="team_7_role">PRP Specialist</h4>
                                     </div>
                                 </div>
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-02.jpg" alt="Image">
+                                        <img src="img/staff8.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
                                                 <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
@@ -751,12 +940,12 @@
                                     <div class="tm-about-text">
                                         <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_8_name">Youssef Alami</h3>
                                         <p data-key="team_8_desc">IT and Digital Health Manager. Implements teleconsultation and digital patient records for better care.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_8_role">Digital Health Manager</h4>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" style="margin-top: 30px; text-align: center;" data-key="team_8_role">Digital Health Manager</h4>
                                     </div>
                                 </div>
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-03.jpg" alt="Image">
+                                        <img src="img/staff7.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
                                                 <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
@@ -768,12 +957,12 @@
                                     <div class="tm-about-text">
                                         <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_9_name">Hajar Bennani</h3>
                                         <p data-key="team_9_desc">Patient Relations Officer. Your first point of contact for appointments, inquiries, and support.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_9_role">Patient Relations</h4>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" style="margin-top: 50px; text-align: center;" data-key="team_9_role">Patient Relations</h4>
                                     </div>
                                 </div>
                                 <div class="tm-carousel-item">
                                     <figure class="effect-honey mb-4">
-                                        <img src="img/about-01.jpg" alt="Image">
+                                        <img src="img/staff9.jpg" alt="Image">
                                         <figcaption>
                                             <ul class="tm-social">
                                                 <li><a href="https://facebook.com" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
@@ -785,7 +974,7 @@
                                     <div class="tm-about-text">
                                         <h3 class="mb-3 tm-text-primary tm-about-title" data-key="team_10_name">Mehdi Rahali</h3>
                                         <p data-key="team_10_desc">Pharmacy and Supplies Manager. Ensures all medical materials are authentic, sterile, and up to standard.</p>
-                                        <h4 class="tm-text-secondary tm-about-subtitle" data-key="team_10_role">Medical Supplies</h4>
+                                        <h4 class="tm-text-secondary tm-about-subtitle" style="margin-top: 50px; text-align: center;" data-key="team_10_role">Medical Supplies</h4>
                                     </div>
                                 </div>
                             </div>
@@ -830,11 +1019,7 @@
                                             frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                     </div>
                                 </div>
-                                <address class="mb-4" data-key="contact_address">
-                                    94, Rue El Farabi, Bloc E8<br>
-                                    Cité Dakhla, Agadir, Morocco 80000<br>
-                                    Open: Monday–Saturday | 8:00 AM – 8:00 PM
-                                </address>
+                                <address class="mb-4" data-key="contact_address">94, Rue El Farabi, Bloc E8, Cité Dakhla, Agadir, Morocco 80000<br><br>Opening Hours:<br><br>* Monday – Friday: 8:30 AM – 8:30 PM<br><br>* Saturday: Closed<br><br>* Sunday: 8:30 AM – 8:30 PM</address>
                                 <ul class="tm-contact-links mb-4">
                                     <li class="mb-2">
                                         <a href="tel:+212612345678">
