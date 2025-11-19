@@ -7,9 +7,9 @@ https://templatemo.com/tm-555-upright
 
 	Color Codes
 	=============
-	Primary blue: #006699
+	Primary warm tan: #C9B59C
 	Gray text: #666666
-	Light gray nav button bg: #F2F2F2;
+	Light beige nav button bg: #EFE9E3;
 
 	Credit
 	=========
@@ -32,18 +32,18 @@ a:hover {
 .btn-primary {
 	padding: 12px 50px;
     border-radius: 0;
-    background: #006699;
+    background: #C9B59C;
     font-size: 1.2rem;
     border: 0;
 }
 
-.btn-primary:hover { background: #068ccf; }
-.tm-text-primary { color: #006699; }
-.tm-text-secondary { color: #009999; }
+.btn-primary:hover { background: #D9CFC7; }
+.tm-text-primary { color: #C9B59C; }
+.tm-text-secondary { color: #B59C7C; }
 hr { border-top: 4px solid #CCC; }
 
 .tm-hr-short {
-	border-top: 1px solid #006699;
+	border-top: 1px solid #C9B59C;
 	width: 238px;
 	margin-left: auto;
 	margin-right: auto;
@@ -61,7 +61,7 @@ hr { border-top: 4px solid #CCC; }
 .tm-mt-100 { margin-top: 100px; }
 
 .tm-sidebar {
-	background-color: #fff;
+	background-color: #F9F8F6;
 	position: fixed;
 	top: 0;
 	bottom: 0;
@@ -134,14 +134,14 @@ hr { border-top: 4px solid #CCC; }
 .tm-brand-box {
     width: 240px;
     height: 180px;
-    background: #006699;
+    background: #C9B59C;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 100px;
     padding: 30px; /* Creates space for logo */
-    background-clip: content-box; /* Blue only around edges */
+    background-clip: content-box; /* Tan only around edges */
 }
 
 #tm-main-nav {
@@ -157,7 +157,7 @@ hr { border-top: 4px solid #CCC; }
 
 .nav-link {
 	position: relative;
-	color: #006699;
+	color: #C9B59C;
 	font-size: 1.4rem;
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -170,7 +170,7 @@ hr { border-top: 4px solid #CCC; }
 	width: 0;
 	height: 0;
 	border-top: 21px solid transparent;
-	border-left: 20px solid #006699;
+	border-left: 20px solid #C9B59C;
 	border-bottom: 21px solid transparent;
 	opacity: 0;
 	transition: all 0.3s ease;
@@ -178,8 +178,8 @@ hr { border-top: 4px solid #CCC; }
 
 .nav-item:hover .nav-link,
 .nav-link.current {
-	background-color: #F2F2F2;
-	color: #006699;
+	background-color: #EFE9E3;
+	color: #C9B59C;
 	padding-left: 30px;
 }
 
@@ -266,7 +266,7 @@ hr { border-top: 4px solid #CCC; }
 
 .tm-gallery-link {
 	padding: 15px;
-	color: #006699;	
+	color: #C9B59C;	
 }
 
 .tm-gallery-link.active { color: #666666; }
@@ -286,7 +286,7 @@ hr { border-top: 4px solid #CCC; }
     height: 40px;
     align-items: center;
     justify-content: center;
-    background: white;
+    background: #F9F8F6;
     color: #999;
     margin-right: 15px;
     margin-bottom: 15px;
@@ -294,7 +294,7 @@ hr { border-top: 4px solid #CCC; }
 
 a.tm-paging-link.active,
 a.tm-paging-link:hover {
-    background: #006699;
+    background: #C9B59C;
     color: white;
 }
 
@@ -407,7 +407,7 @@ figure.effect-honey figcaption::before {
 	left: 0;
 	width: 100%;
 	height: 10px;
-	background: #006699;
+	background: #C9B59C;
 	content: '';
 	-webkit-transform: translate3d(0,10px,0);
 	transform: translate3d(0,10px,0);
@@ -530,7 +530,7 @@ figure.effect-honey:hover ul li a {
 .slick-dots li button:hover:before, 
 .slick-dots li button:focus:before,
 .slick-dots li.slick-active button:before {
-    color: #006699;
+    color: #C9B59C;
 }
 
 .tm-carousel {
@@ -702,7 +702,7 @@ select:not([multiple]) {
 		position: fixed;
 		left: 0;
 		top: 0;
-		background-color: rgb(0 102 153 / 0.80);
+		background-color: rgb(201 181 156 / 0.80);
 		color: white;
 		padding: 10px 15px;
 		transition: all 0.3s ease;
